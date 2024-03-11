@@ -1,0 +1,28 @@
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<form hx-post="/llm/query">
+    <div class="w-small w-2/3 mx-auto py-10 text-gray-600">
+        <textarea name="search" rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Write your thoughts here...">
+        </textarea>
+        <br />
+        <button hx-post="/llm/query" hx-target="#todo-results" hx-indicator=" .htmx-indicator"
+            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+            Search
+        </button>
+        <span class="htmx-indicator">Querying...</span>
+
+    </div>
+</form>
+
+<table class="border-collapse w-small w-2/3 mx-auto">
+
+    <tbody id="todo-results">
+
+    </tbody>
+</table>
+{% endblock content %}
