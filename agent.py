@@ -15,10 +15,9 @@ from langchain.chains import create_sql_query_chain
 import openai
 
 
-service_account_file = "/Users/johnwesonga/projects/python/langchain-bq/sixth-tribute-92520-f4722eaa8807.json" # Change to where your service account key file is located
-project = "sixth-tribute-92520"
-dataset = "test"
-table = "vwSalesAnalysis"
+service_account_file = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+project = os.getenv('GCP_PROJECT')
+dataset = os.getenv("BQ_DATASET")
 sqlalchemy_url = f'bigquery://{project}/{dataset}?credentials_path={service_account_file}'
 # OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -26,7 +25,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 db = SQLDatabase.from_uri(sqlalchemy_url)
 print(db.dialect)
 print(db.get_usable_table_names())
-db.run("SELECT * FROM `sixth-tribute-92520.test.vwSalesAnalysis` LIMIT 10;")
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 chain = create_sql_query_chain(llm, db)
