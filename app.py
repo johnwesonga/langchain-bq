@@ -64,9 +64,9 @@ def index():
 def query():
     # Get the user's input from the form
     input = request.form.get('search')
+    dataset = request.form.get('dataset')
 
     chain = create_extraction_chain_pydantic(Table, llm, system_message=system)
-    #table_chain.invoke({"input": "What are all the genres of Alanis Morisette songs"})
     
     #chain = create_sql_query_chain(llm, db)
     chain.get_prompts()[0].pretty_print()
@@ -86,4 +86,4 @@ def query():
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

@@ -11,18 +11,28 @@
     {% assets 'css' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
     <title>Langchain-BQ NLP</title>
 </head>
 
-<body class="bg-blue-100">
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            {% block content %}
-            {% endblock content %}
-        </div>
+<body>
+
+    <section class="container is-max-desktop">
+        {% block content %}
+        {% endblock content %}
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    Code Manenos by John Wesonga
+                </p>
+            </div>
+        </footer>
     </section>
+
+
+
 </body>
 
 </html>
